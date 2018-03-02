@@ -1,5 +1,5 @@
 <?php
-  if (!isset($_GET['path'])) { echo "Invalid API Token"; die(); }
+  if (!isset($_GET['path']) || sizeof($_GET['path']) < 2) { echo "Invalid API Token"; die(); }
   require_once("../etc/config.inc.php");
   require_once("../lib/lib_mysql.php");
   require_once("../lib/lib_api.php");

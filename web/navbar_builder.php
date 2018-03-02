@@ -17,6 +17,18 @@
         echo "<ul class=\"nav navbar-nav\">";
 
         for ($i = 0; $i < sizeof($NAVBAR); $i++) {
+          //safe guards for php error wall / EVIL users
+          if (!isset($NAVBAR[$i]['caret'])) { $NAVBAR[$i]['caret'] = 0;    }
+          if (!isset($NAVBAR[$i]['caret'])) { $NAVBAR[$i]['action'] = '#'; }
+          if (!isset($NAVBAR[$i]['text']))  { $NAVBAR[$i]['text'] = '';    }
+          if (!isset($NAVBAR[$i]['title'])) { $NAVBAR[$i]['title'] = '';   }
+          if (!isset($NAVBAR[$i]['icon']))  { $NAVBAR[$i]['icon'] = '';    }
+          if (!isset($NAVBAR[$i]['type']))  { $NAVBAR[$i]['type'] = '';    }
+          if (!isset($NAVBAR[$i]['url']))   { $NAVBAR[$i]['url'] = '#';    }
+          if (!isset($NAVBAR[$i]['field'])) { $NAVBAR[$i]['field'] = '';   }
+          if (!isset($NAVBAR[$i]['rtext'])) { $NAVBAR[$i]['rtext'] = '';   }
+          if (!isset($NAVBAR[$i]['ltext'])) { $NAVBAR[$i]['ltext'] = '';   }
+
           if ($NAVBAR[$i]['type'] == "dropdown") {
             echo "<li class=\"dropdown\">";
             echo    "<a href=\"".$NAVBAR[$i]['url']."\" title=\"".$NAVBAR[$i]['title']."\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">";

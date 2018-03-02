@@ -6,12 +6,12 @@
 
   // Please define the following variables within the script that calls this library:
 
-  define('AUTH_SERVER',     'https://intranet.usna.edu/CS/AUTH/');
-  define('AUTH_MESSAGE',    'Please log into the Authentication Server');
-  define('AUTH_TITLE',      'Example Title');
-  define('AUTH_TOKEN_TIME', 100);
-  define('AUTH_IDENTIFIER', '7d6b9398-776f-4a76-8992-48830cfcf227');
-  define('AUTH_SECRET',     '2d654eca-d651-492b-b0d2-66ffd4a5b582');
+  // define('AUTH_SERVER',     'https://intranet.usna.edu/CS/AUTH/');
+  // define('AUTH_MESSAGE',    'Please log into the Authentication Server');
+  // define('AUTH_TITLE',      'Example Title');
+  // define('AUTH_TOKEN_TIME', 100);
+  // define('AUTH_IDENTIFIER', '7d6b9398-776f-4a76-8992-48830cfcf227');
+  // define('AUTH_SECRET',     '2d654eca-d651-492b-b0d2-66ffd4a5b582');
 
   // Redirect to the authentication server,
   function login_redirect($LOGIN_ADDRESS,
