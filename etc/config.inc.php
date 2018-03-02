@@ -13,9 +13,29 @@
   ################################################################
   # Define the High Level definitions for this project
   ################################################################
-  define('PAGE_TITLE',       'Building a Framework');
-  define('NAVBAR_TITLE',     '');
-  define('NAVBAR_TITLE_URL', '#');
+  $PAGE_TITLE = "Template Title";
+  $PAGE_KEYWORDS = "USNA,Birney,IT452";
+  $PAGE_DESC = "Ben Birney's IT452 Default Page";
+  $NAVBAR_TITLE = 'Test';
+  $NAVBAR_TITLE_URL = '#';
+  $NAVBAR = array(
+    array(
+      'type' => 'dropdown',
+      'title' => 'logon',
+      'icon' => 'glyphicon-log-in',
+      'ltext' => '',
+      'rtext' => '',
+      'caret' => 1,
+      'options' => array(
+        array(
+          'type' => 'url',
+          'url' => '?login',
+          'title' => 'logon (pls)',
+          'text' => 'Log On'
+        )
+      )
+    )
+  );
 
   ################################################################
   # Standard (and Safe) Configuration Section                    #
@@ -24,7 +44,7 @@
   # Academy Authentication Configuration
   define('AUTH_SERVER',     'https://intranet.usna.edu/CS/AUTH/');
   define('AUTH_MESSAGE',    'Log on (pls)');
-  define('AUTH_TITLE',      'Building a Framework');
+  define('AUTH_TITLE',      'Where\'s the NavBar?');
   define('AUTH_IDENTIFIER', '7d6b9398-776f-4a76-8992-48830cfcf227');
   define('AUTH_SECRET',     '2d654eca-d651-492b-b0d2-66ffd4a5b582');
   define('AUTH_TOKEN_TIME', 100);
@@ -48,6 +68,41 @@
                                  'user'=>'m200516',
                                  'password'=>'now',
                                  'name'=>'m200516_IT452')));
+
+ ################################################################
+ # Dynamic Navbar Building                                      #
+ ################################################################
+
+ # What is the order that modules should appear, and what
+ # navbar options are available.
+ define('MODULE_NAV',
+        array('api'      =>array('type'=>'dropdown', 'title'=>'Application Interface', 'icon'=>'glyphicon-globe',       'rtext'=>" API",            'caret'=>true),
+              'review'   =>array('type'=>'dropdown', 'title'=>'Review',                'icon'=>'glyphicon-th-large',    'rtext'=>" Review",         'caret'=>true),
+              'database' =>array('type'=>'dropdown', 'title'=>'Database',              'icon'=>'glyphicon-list',        'rtext'=>" Query Tools",    'caret'=>true),
+              'tasks'    =>array('type'=>'dropdown', 'title'=>'Tasks',                 'icon'=>'glyphicon-cog',         'rtext'=>" Tasks",          'caret'=>true),
+              'grades'   =>array('type'=>'dropdown', 'title'=>'Grades',                'icon'=>'glyphicon-signal',      'rtext'=>" Grades",         'caret'=>true),
+              'tools'    =>array('type'=>'dropdown', 'title'=>'System Tools',          'icon'=>'glyphicon-wrench',      'rtext'=>" Tools",          'caret'=>true),
+              'admin'    =>array('type'=>'dropdown', 'title'=>'Administrative Tools',  'icon'=>'glyphicon-floppy-open', 'rtext'=>" Administration", 'caret'=>true),
+              'debug'    =>array('type'=>'dropdown', 'title'=>'Project Debugging',     'icon'=>'glyphicon-send',        'rtext'=>" Debugging",      'caret'=>true)
+            ));
+
+ # What directories should we search through for NavBar modules?
+ define('MODULE_DIRS',
+        array('../review',
+              '../student',
+              '../api',
+              '../tools',
+              '../db',
+              '../home'));
+
+ # Manually Specify Certain Files to be processed:
+ define('MODULE_FILES',
+       array('../review/test.php',
+             '../api/docs.php'));
+
+ # What Files should not be processed?
+ define('MODULE_IGNORE',
+       array('api.php','home.php'));
 
   ################################################################
   # DANGER # DANGER # DANGER # DANGER # DANGER # DANGER # DANGER #

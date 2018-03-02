@@ -6,3 +6,19 @@ body {
   border: 1px solid #d9d9d9 !important;
   text-align: left;
 }
+
+.navbar-custom {
+    color: #FFFFFF;
+    background-color: #054a71;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-custom img {
+    max-height: 100%;
+}
+
+hr {
+  padding: 0 !important;
+  margin: 0 !important;
+}
