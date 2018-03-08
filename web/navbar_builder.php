@@ -32,10 +32,11 @@
           if ($NAVBAR[$i]['type'] == "dropdown") {
             echo "<li class=\"dropdown\">";
             echo    "<a href=\"".$NAVBAR[$i]['url']."\" title=\"".$NAVBAR[$i]['title']."\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">";
-            echo      "<span class=\"glyphicon ".$NAVBAR[$i]['icon']."\" aria-hidden=\"true\"></span>";
+            echo      $NAVBAR[$i]['ltext']." <span class=\"glyphicon ".$NAVBAR[$i]['icon']."\" aria-hidden=\"true\"></span>";
             if ($NAVBAR[$i]['caret'] == 1) {
             echo      "<span class=\"caret\"></span>";
             }
+            echo $NAVBAR[$i]['rtext'];
             echo    "</a>";
             echo    "<ul class=\"dropdown-menu  scrollable-menu\">";
 
