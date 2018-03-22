@@ -40,6 +40,12 @@
   // Load in CSV Library
   require_once('lib_csv.php');
 
+  // Load in the Sessions Module
+  require_once('lib_session.php');
+
+  // Load in Modules Library
+  require_once('lib_modules.php');
+
   // Plus whatever other libraries you may need.
 
 ?>

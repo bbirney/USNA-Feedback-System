@@ -98,7 +98,6 @@
                 }
                 echo '            </li>'.PHP_EOL;
               }
-
             ?>
           </ul>
         </div>

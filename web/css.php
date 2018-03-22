@@ -13,9 +13,8 @@
     <!-- Icon to use in the browser tab -->
     <link rel="icon" href="<?php echo WEB_PATH; ?>images/web-icon.png">
 
-    <title><?php
-      echo $PAGE_TITLE;
-    ?></title>
+    <!-- Provide the page title -->
+    <title><?php echo $PAGE_TITLE; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo WEB_PATH; ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,6 +33,11 @@
     <!-- Ace Code Editor - https://ace.c9.io/ -->
     <script type="text/javascript"
       src="<?php echo WEB_PATH; ?>ace-builds/src-noconflict/ace.js" charset="utf-8">
+    </script>
+
+    <!-- Chart.js - http://www.chartjs.org -->
+    <script type="text/javascript"
+      src="<?php echo WEB_PATH; ?>chartjs/Chart.bundle.min.js" charset="utf-8">
     </script>
 
     <!-- Custom styles for this template -->
@@ -62,7 +66,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?php echo WEB_PATH; ?>bootstrap/js/jquery.min.js"></script>
+    <script src="<?php echo WEB_PATH; ?>jquery/jquery-3.3.1.min.js"></script>
     <script src="<?php echo WEB_PATH; ?>bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<?php echo WEB_PATH; ?>bootstrap/js/ie10-viewport-bug-workaround.js"></script>
