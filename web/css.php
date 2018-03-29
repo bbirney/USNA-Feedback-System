@@ -28,4 +28,4 @@
     <script type="text/javascript" src="../web/DataTables/datatables.min.js"></script>
     <script type="text/javascript" src="../web/Chart.bundle.min.js"></script>
   </head>
-  <body>  
+  <body>

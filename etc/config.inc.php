@@ -25,8 +25,8 @@
   define('AUTH_SERVER',     'https://intranet.usna.edu/CS/AUTH/');
   define('AUTH_MESSAGE',    'Please log on');
   define('AUTH_TITLE',      'Template');
-  define('AUTH_IDENTIFIER', 'aaaaaaaa-cfca-40e9-85b3-47f0596f9855');
-  define('AUTH_SECRET',     'bbbbbbbb-4ffb-4a03-b36b-1928d8ade526');
+  define('AUTH_IDENTIFIER', '7d6b9398-776f-4a76-8992-48830cfcf227');
+  define('AUTH_SECRET',     '2d654eca-d651-492b-b0d2-66ffd4a5b582');
   define('AUTH_TOKEN_TIME', 100);
   define('AUTH_LIBRARY',    LIBRARY_PATH.'lib_auth_usna.php');
 
@@ -45,9 +45,9 @@
   # API queries or similar functions.
   define('DATABASE_MYSQL',
           array('default'=>array('host'=>'midn.cs.usna.edu',
-                                 'user'=>'dbusername',
-                                 'password'=>'dbpassword',
-                                 'name'=>'dbschemaname')));
+                                 'user'=>'m200516',
+                                 'password'=>'now',
+                                 'name'=>'m200516_IT452')));
 
   ################################################################
   # Dynamic Navbar Building                                      #

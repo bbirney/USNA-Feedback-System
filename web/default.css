@@ -1,21 +1,17 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 .table {
   border: 1px solid #d9d9d9 !important;
-  text-align: left;
+  text-align: left !important;
 }
 
 .navbar-custom {
-    color: #FFFFFF;
-    background-color: #054a71;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-custom img {
-    max-height: 100%;
+    color: #FFFFFF !important;
+    background-color: #054a71 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 hr {
