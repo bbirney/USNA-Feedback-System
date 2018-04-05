@@ -7,11 +7,11 @@
                       'version'    => 1.0,
                       'display'    => '',
                       'tab'        => 'tools',
-                      'position'   => 0,
+                      'position'   => 100,
                       'student'    => true,
                       'instructor' => true,
-                      'guest'      => true,
-                      'access'     => array(/*'admin', 'db' */));
+                      'guest'      => false,
+                      'access'     => array('admin' => 'db'));
   ###############################################################
 
   # Load in Configuration Parameters
@@ -19,52 +19,10 @@
 
   # Load in template, if not already loaded
   require_once(LIBRARY_PATH.'template.php');
-
-  require_once(WEB_PATH.'navbar.php');
-
-  $key = retrieve_apikey($db, USER['user']);
+  require_once("../web/navbar.php");
+  if (!isset($_POST['query'])) {
 ?>
-<script>
-  $(document).ready(function(){
-    $("#form").submit(function(e){
-      $.ajax({
-        url: "../api/<?php echo $key['apikey'] ?>/query",
-        method: "post",
-        data: $("#form").serialize(),
-        success: function(result) {
-          console.log(result);
-          $("#output").html(data_to_table(result));
-          $("#input").html("");
-        }
-      });
-      e.preventDefault();
-    });
-  });
-  
-  function data_to_table(arr) {
-    var table = "<table><thead><tr>";
-
-    for (var key in arr.keys()) {
-      table += "<td>"+key+"</td>";
-    }
-
-    table += "</tr></thead><tbody>";
-
-    for (var key in arr) {
-      table += "<tr>";
-      for (var val in key) {
-        table += "<td>"+val+"</td>";
-      }
-      table += "</tr>";
-    }
-
-    table += "</tbody></table>";
-
-    return table;
-  }
-</script>
-  <br><br><br>
-  <div class="row" id="input">
+  <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <form method="post" id="form">
@@ -79,5 +37,33 @@
     <div class="col-md-8" id="output"></div>
     <div class="col-md-2"></div>
   </div>
+<?php
+  } else {
+    $stmt = build_query($db, $_POST['query'], array());
+    $stmt->execute();
+    $result = stmt_to_assoc_array($stmt);
+
+    echo "<table class=\"table table-striped\" style=\"width:60%;margin-left:auto;margin-right:auto;\">";
+    $keys = array_keys($result);
+    echo "<thead>";
+    echo "</thead><tbody>";
+
+    foreach ($result as $i) {
+      echo "<tr>";
+      foreach ($i as $key => $value) {
+        echo "<td>".$value."</td>";
+      }
+      echo "</tr>";
+    }
+    echo "</tbody></table>";
+?>
+    <script>
+      $("#input").html("");
+    </script>
+
+<?php
+  }
+?>
+
 </body>
 </html>
