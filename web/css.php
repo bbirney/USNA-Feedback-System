@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="<?php echo $PAGE_DESC; ?>">
-    <meta name="keywords" content="<?php echo $PAGE_KEYWORDS; ?>">
     <meta name="author" content="Ben Birney">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="http://courses.cs.usna.edu/IT350/calendar/images/web-icon.png">
