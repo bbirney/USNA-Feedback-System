@@ -20,50 +20,46 @@
   # Load in template, if not already loaded
   require_once(LIBRARY_PATH.'template.php');
   require_once("../web/navbar.php");
-  if (!isset($_POST['query'])) {
-?>
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <form method="post" id="form">
-        <textarea class="form-control" rows="8" name="query"></textarea><br>
-        <button type="submit" class="btn">Submit</button>
-      </form>
-    </div>
-    <div class="col-md-2"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8" id="output"></div>
-    <div class="col-md-2"></div>
-  </div>
-<?php
-  } else {
-    $stmt = build_query($db, $_POST['query'], array());
-    $stmt->execute();
-    $result = stmt_to_assoc_array($stmt);
 
-    echo "<table class=\"table table-striped\" style=\"width:60%;margin-left:auto;margin-right:auto;\">";
-    $keys = array_keys($result);
-    echo "<thead>";
-    echo "</thead><tbody>";
-
-    foreach ($result as $i) {
-      echo "<tr>";
-      foreach ($i as $key => $value) {
-        echo "<td>".$value."</td>";
+  function assoc_arr_to_table($result) {
+    $table = "<table class=\"table table-striped table-bordered\"><tbody>";
+    foreach ($result as $i => $val) {
+      $table .= "<tr><td>".$i."</td>";
+      foreach ($val as $key => $value) {
+        $table .= "<td>".$value."</td>";
       }
-      echo "</tr>";
+      $table .= "</tr>";
     }
-    echo "</tbody></table>";
-?>
-    <script>
-      $("#input").html("");
-    </script>
+    $table .= "</tbody></table>";
 
-<?php
+    return $table;
+  }
+
+  if (isset($_REQUEST['query'])) {
+    $stmt = build_query($db, $_REQUEST['query']);
+    $data = stmt_to_assoc_array($stmt);
+    $table = assoc_arr_to_table($data);
+    echo $table;
+    die();
   }
 ?>
 
-</body>
-</html>
+<div class="container">
+  <form id="myform">
+    <textarea class="form-control" name="query" cols="80"></textarea><br>
+    <button class="btn btn-default" type="submit">Submit</button>
+  </form>
+  <div id="output"></div>
+</div>
+
+<script type="text/javascript">
+  $("#myform").submit(function(e){
+  $.ajax({
+    data: $("#myform").serialize(),
+    success: function(result) {
+      $("#output").html(result);
+    }
+  });
+  e.preventDefault();
+  });
+</script>
