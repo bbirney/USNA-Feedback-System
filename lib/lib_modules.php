@@ -1,26 +1,4 @@
 <?php
-
-  ###############################################################
-  # Process Plug-and-Play Modules as part of the template       #
-  ###############################################################
-
-  # Make sure that scanned PHP files have the following
-  # variable defined within them:
-
-  ###############################################################
-  # Automatic Navbar Menu Generation (lib_module) Configuration #
-  ###############################################################
-  $MODULE_DEF = array('name'=>'MySQL Query Builder',
-                      'version'=>1.0,
-                      'display'=>'Query Builder',
-                      'tab'=>'tools',
-                      'position'=>20,
-                      'student'=>true,
-                      'instructor'=>true,
-                      'guest'=>false,
-                      'access'=>array('admin'=>'site'));
-  ###############################################################
-
   $NAVBAR_MODULES = array();
 
   function module_process($file_data) {
