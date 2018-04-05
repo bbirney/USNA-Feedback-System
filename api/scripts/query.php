@@ -2,10 +2,9 @@
   if (!isset($_POST['query'])) die();
 
   $stmt = build_query($db, $_POST['query'], array());
-  $stmt->bind_result($results);
-
-  while($stmr->fetch());
+  $result = $stmt->execute();
+  $result = stmt_to_assoc_array($result);
   $stmt->close();
 
-  echo json_encode($results);
+  echo json_encode($result);
 ?>
