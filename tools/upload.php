@@ -22,8 +22,19 @@
   require_once("../web/navbar.php");
 
 
-  function assoc_arr_to_table($result) {
-    $table = "<table class=\"table table-striped table-bordered\"><tbody>";
+  function assoc_arr_to_table($data, $header=false) {
+    $table = "<table class=\"table table-striped table-bordered\">";
+
+    if ($header) {
+      $table .= "<thead><tr>";
+
+      $keys = array_keys($data);
+      for ($i=0;$i<sizeof($keys);$i++) $table .= "<th>".$keys[$i]."</th>";
+
+      $table .= "</tr></thead>";
+    }
+
+    $table .= "<tbody>";
     foreach ($result as $i => $val) {
       $table .= "<tr><td>".$i."</td>";
       foreach ($val as $key => $value) {
@@ -44,7 +55,10 @@
       $data = read_csv();
 
     } catch (Exception $e) {
-      if ($i == 0) {
+      if ((!isset($_FILES['myfiles']['type'][0])) && ($_FILES['myfiles']['type'] != "text/csv")) {
+        echo "Datatables only for csv-formatted files";
+        die();
+      } else if ($_FILES['myfiles']['type'] == "text/csv") {
 
       } else {
         echo "Datatables only for csv-formatted files";
