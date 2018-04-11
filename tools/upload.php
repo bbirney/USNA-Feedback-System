@@ -35,7 +35,7 @@
     }
 
     $table .= "<tbody>";
-    foreach ($result as $i => $val) {
+    foreach ($data as $i => $val) {
       $table .= "<tr><td>".$i."</td>";
       foreach ($val as $key => $value) {
         $table .= "<td>".$value."</td>";
@@ -50,16 +50,24 @@
   if ((isset($_FILES)) && (sizeof($_FILES) > 0)) {
     try {
       $i=-1;
-      while($_FILES['myfiles']['type'][++$i] != "text/csv");
+      while(isset($_FILES['myfiles']['type'][++$i]) && $_FILES['myfiles']['type'][$i] != "text/csv");
 
-      $data = read_csv();
+      if (!isset($_FILES['myfiles']['type'][$i])) throw new Exception();
+
+      $data = read_csv($_FILES['myfiles']['tmp_name'][0], false, false);
+      $table = assoc_arr_to_table($data);
+      echo $table;
+      die();
 
     } catch (Exception $e) {
       if ((!isset($_FILES['myfiles']['type'][0])) && ($_FILES['myfiles']['type'] != "text/csv")) {
         echo "Datatables only for csv-formatted files";
         die();
       } else if ($_FILES['myfiles']['type'] == "text/csv") {
-
+        $data = read_csv($_FILES['myfiles']['tmp_name'][$i]);
+        $table = assoc_arr_to_table($data, true);
+        echo $table;
+        die();
       } else {
         echo "Datatables only for csv-formatted files";
         die();
@@ -73,23 +81,17 @@
     die();
   }
 ?>
+<br>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 text-center">
-      <form id="myform" method="post" enctype="multipart/form-data">
-        <div class="col-md-6 col-md-offset-3 text-center">
-          <div id="drop_zone" class="jumbotron text-center" title="Drop Files Here..." style="height:250px;border:5px dashed grey;padding:10px;text-align:center;vertical-align:middle;">
-            <input type="file" id="drop_zone" name="myfiles[]" style="margin-left:auto;margin-right:auto;width:50%" multiple>
-          </div>
-          <button class="btn btn-default" type="submit">Upload File(s)</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div id="output">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 text-center">
+    <form id="myform" method="post" enctype="multipart/form-data">
+       <input type="file" id="myfiles" name="myfiles[]" multiple>
+       <button class="btn btn-default" type="submit">Upload File(s)</button>
+    </form>
   </div>
 </div>
+<div id="output"></div>
 
 <script type="text/javascript">
   $("#myform").submit(function(e){
