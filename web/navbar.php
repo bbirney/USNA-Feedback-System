@@ -41,10 +41,6 @@
   #############################################################################
   $USER_OPTIONS = array();
   $user = USER['user'];
-  if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
-    $user = '';
-    $USER_OPTIONS[] = array('url'=>'?login=1', 'type'=>'url', 'title'=>'', 'text'=>'Log On');
-  }
 
   #############################################################################
   # Modules based Menu Options (USER SECTION)
@@ -73,13 +69,20 @@
     }
     $USER_OPTIONS[] = array('url'=>'?logoff=1', 'type'=>'url', 'title'=>'', 'text'=>'Log Off');
   }
-  $NAVBAR[] = array('type'=>'dropdown', 'title'=>'User Tools', 'icon'=>'glyphicon-user', 'rtext'=>" $user", 'options'=>$USER_OPTIONS, 'caret'=>true);
+
+  if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
+    $user = '';
+    $NAVBAR[] = array('url'=>'?login=1', 'type'=>'url', 'title'=>'Login', 'icon'=>'glyphicon-log-in');
+  } else {
+    $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
+  }
+
 
   #############################################################################
   # Modules based Menu Options (other sections)
   #############################################################################
+  foreach(MODULE_NAV as $heading => $config) {
   if (defined('MODULE_NAV') && defined('NAVBAR_MODULES')) {
-    foreach(MODULE_NAV as $heading => $config) {
       if ($heading == 'seperator') {
         $NAVBAR[] = array('type'=>'seperator');
       } elseif ($heading != 'user' && isset(NAVBAR_MODULES[$heading])) {

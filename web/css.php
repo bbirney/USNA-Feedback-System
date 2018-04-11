@@ -27,4 +27,4 @@
     <script type="text/javascript" src="../web/Chart.bundle.min.js"></script>
   </head>
   <body>
-    <br/><br/><br/>
+    <br/><br/>

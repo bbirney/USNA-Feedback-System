@@ -18,3 +18,11 @@ hr {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.jumbotron {
+  border-radius: 6px;
+}
+
+p {
+  text-indent: 40px;
+}

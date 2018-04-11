@@ -11,7 +11,7 @@
                       'student'    => true,
                       'instructor' => true,
                       'guest'      => true,
-                      'access'     => array());
+                      'access'     => array('admin'=>'db'));
   ###############################################################
 
   # Load in Configuration Parameters
