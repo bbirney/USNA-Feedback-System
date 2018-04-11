@@ -75,10 +75,10 @@
     }
 
 
-    echo "<pre>";
-    print_r($_FILES);
-    echo "</pre>";
-    die();
+    // echo "<pre>";
+    // print_r($_FILES);
+    // echo "</pre>";
+    // die();
   }
 ?>
 <br>

@@ -63,9 +63,7 @@
               'grades'   =>array('type'=>'dropdown', 'title'=>'Grades',                'icon'=>'glyphicon-signal',      'rtext'=>" Grades",         'caret'=>true),
               'tools'    =>array('type'=>'dropdown', 'title'=>'System Tools',          'icon'=>'glyphicon-wrench',      'rtext'=>" Tools",          'caret'=>true),
               'admin'    =>array('type'=>'dropdown', 'title'=>'Administrative Tools',  'icon'=>'glyphicon-floppy-open', 'rtext'=>" Administration", 'caret'=>true),
-              'debug'    =>array('type'=>'dropdown', 'title'=>'Project Debugging',     'icon'=>'glyphicon-send',        'rtext'=>" Debugging",      'caret'=>true),
-              'give_feedback' =>array('type'=>'url', 'title'=>'Give Feedback',         'icon'=>'glyphicon-conversation'),
-              'view_feedback' =>array('type'=>'url', 'title'=>'View Feedback',         'icon'=>'glyphicon-inbox')
+              'debug'    =>array('type'=>'dropdown', 'title'=>'Project Debugging',     'icon'=>'glyphicon-send',        'rtext'=>" Debugging",      'caret'=>true)
             ));
 
   # What directories should we search through for NavBar modules?

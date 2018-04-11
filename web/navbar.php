@@ -45,36 +45,24 @@
   #############################################################################
   # Modules based Menu Options (USER SECTION)
   #############################################################################
-  if (defined('NAVBAR_MODULES') && isset(NAVBAR_MODULES['user'])) {
-    foreach(NAVBAR_MODULES['user'] as $pos => $rows) {
-      foreach ($rows as $irow => $row) {
-        $USER_OPTIONS[] = array('url'=>$row['file'], 'type'=>'url', 'title'=>$row['display'], 'text'=>$row['name']);
-      }
-    }
-  }
+  // if (defined('NAVBAR_MODULES') && isset(NAVBAR_MODULES['user'])) {
+  //   foreach(NAVBAR_MODULES['user'] as $pos => $rows) {
+  //     foreach ($rows as $irow => $row) {
+  //       $USER_OPTIONS[] = array('url'=>$row['file'], 'type'=>'url', 'title'=>$row['display'], 'text'=>$row['name']);
+  //     }
+  //   }
+  // }
 
-  #############################################################################
-  # Show user debugging and logoff options - always last options
-  #############################################################################
-  if (!(!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '')) {
-    # Debugging Options
-    if (ADMIN) {
-      $USER_OPTIONS[] = array('type'=>'seperator');
-      if (isset($_SESSION['debug'])) {
-        $USER_OPTIONS[] = array('url'=>'?debug=off', 'type'=>'url', 'title'=>'', 'text'=>'<font color=#D1551F>Turn Debugging Off</font>');
-      } else {
-        $USER_OPTIONS[] = array('url'=>'?debug=on', 'type'=>'url', 'title'=>'', 'text'=>'Turn Debugging On');
-      }
-      $USER_OPTIONS[] = array('type'=>'seperator');
-    }
-    $USER_OPTIONS[] = array('url'=>'?logoff=1', 'type'=>'url', 'title'=>'', 'text'=>'Log Off');
-  }
 
   if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
     $user = '';
     $NAVBAR[] = array('url'=>'?login=1', 'type'=>'url', 'title'=>'Login', 'icon'=>'glyphicon-log-in');
   } else {
     $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
+    $NAVBAR[] = array('url' =>'../home/give_feedback.php', 'type'=>'url', 'title'=>'Give Feedback', 'icon'=>'glyphicon-comment');
+    $NAVBAR[] = array('url' =>'../home/view.php', 'type'=>'url', 'title'=>'View Feedback', 'icon'=>'glyphicon-inbox');
+    $NAVBAR[] = array('type'=>'seperator');
+    $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   }
 
 
@@ -93,8 +81,6 @@
               $options[] = array('url'=>$row['file'], 'type'=>'url', 'title'=>$row['display'], 'text'=>$row['name']);
             }
           }
-          $config['options'] = $options;
-          $NAVBAR[] = $config;
         }
       }
     }
