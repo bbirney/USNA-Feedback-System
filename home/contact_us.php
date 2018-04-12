@@ -29,7 +29,13 @@
   if(isset($_REQUEST['name'])){
     $mailHeaders = "From: " . $_REQUEST['email'] . "\r\n";
     mail("m200516@usna.edu",$_REQUEST['name'],$_REQUEST['feedback'],$mailHeaders);
-    unset($_REQUEST);
+
+    $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
+                  <strong>Email sent!</strong>
+                 </div>";
+
+    echo $response;
+    die();
   }
 ?>
 
@@ -48,9 +54,10 @@
             <br><button type="submit" class="btn btn-default">Submit Feedback</button>
           </div>
         </form>
-    </div>
+      </div>
     </div>
   </div>
+  <div id="output"></div>
   <script type="text/javascript">
     $("#myform").submit(function(e){
     $.ajax({
