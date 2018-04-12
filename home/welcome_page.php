@@ -37,9 +37,9 @@
     </div>
   </div>
   <?php
-  echo "<pre>";
-  print_r($NAVBAR);
-  echo "</pre>";
+  // echo "<pre>";
+  // print_r($NAVBAR);
+  // echo "</pre>";
   ?>
 </body>
 </html>

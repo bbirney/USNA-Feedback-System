@@ -7,10 +7,10 @@
                       'version'    => 1.0,
                       'display'    => '',
                       'tab'        => 'give_feedback',
-                      'position'   => 3,
+                      'position'   => 1,
                       'student'    => true,
                       'instructor' => true,
-                      'guest'      => true,
+                      'guest'      => false,
                       'access'     => array());
   ###############################################################
 
@@ -24,5 +24,4 @@
   # Note: You too will have automated NavBar generation
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
-
 ?>

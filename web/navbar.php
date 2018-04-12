@@ -57,6 +57,8 @@
   if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
     $user = '';
     $NAVBAR[] = array('url'=>'?login=1', 'type'=>'url', 'title'=>'Login', 'icon'=>'glyphicon-log-in');
+    $NAVBAR[] = array('type'=>'seperator');
+    $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   } else {
     $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
     $NAVBAR[] = array('url' =>'../home/give_feedback.php', 'type'=>'url', 'title'=>'Give Feedback', 'icon'=>'glyphicon-comment');
