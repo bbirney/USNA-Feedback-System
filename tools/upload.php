@@ -23,7 +23,7 @@
 
 
   function assoc_arr_to_table($data, $header=false) {
-    $table = "<table class=\"table table-striped table-bordered\">";
+    $table = "<table class=\"table table-striped table-bordered table-condensed\">";
 
     if ($header) {
       $table .= "<thead><tr>";
