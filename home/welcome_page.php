@@ -27,13 +27,12 @@
   <div class="row">
     <h1 class="text-center">Feedback System</h1>
     <div class="col-md-3"></div>
-    <div class="col-md-6 jumbotron">
-      <p>
+    <div class="col-md-6 jumbotron j-title">
         Welcome to Ben Birney's USNA Feedback System! I thought new
         feedback system where real comments can be used instead of a rank and
-        single-word comment.
-
-      </p>
+        single-word comment. Please log in to use the feedback system. If you
+        have any questions, comments, concerns, or complains please contact me
+        via the link in the top right!
     </div>
   </div>
   <?php
