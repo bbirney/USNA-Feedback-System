@@ -66,7 +66,7 @@
     $NAVBAR[] = array('url' =>'../home/view.php', 'type'=>'url', 'title'=>'View Feedback', 'icon'=>'glyphicon-inbox');
     $NAVBAR[] = array('url'=>'../home/faq.php', 'type'=>'url', 'title'=>'FAQ', 'icon'=>'glyphicon-question-sign');
     $NAVBAR[] = array('type'=>'seperator');
-    $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
+    $NAVBAR[] = array('url'=>'../home/welcome_page.php?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   }
 
