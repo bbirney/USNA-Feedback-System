@@ -13,6 +13,9 @@
                       'access'     => array());
   ###############################################################
 
+  $PAGE_TITLE = "Ben's Feedback";
+
+
   # Load in Configuration Parameters
   require_once("../etc/config.inc.php");
 

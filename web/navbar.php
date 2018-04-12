@@ -60,10 +60,11 @@
     $NAVBAR[] = array('type'=>'seperator');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   } else {
-    $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
+    $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'icon'=>'glyphicon-home');
     $NAVBAR[] = array('url' =>'../home/give_feedback.php', 'type'=>'url', 'title'=>'Give Feedback', 'icon'=>'glyphicon-comment');
     $NAVBAR[] = array('url' =>'../home/view.php', 'type'=>'url', 'title'=>'View Feedback', 'icon'=>'glyphicon-inbox');
     $NAVBAR[] = array('type'=>'seperator');
+    $NAVBAR[] = array('url'=>'?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   }
 

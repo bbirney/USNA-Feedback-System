@@ -14,6 +14,9 @@
                       'access'     => array());
   ###############################################################
 
+
+  $PAGE_TITLE = "Give Feedback";
+
   # Load in Configuration Parameters
   require_once("../etc/config.inc.php");
 
@@ -26,12 +29,26 @@
   require_once(WEB_PATH.'navbar.php');
 
   $api_data = retrieve_apikey($db, USER['user']);
+
+  if (isset($_REQUEST['feedback']) && isset($_REQUEST['alpha'])) {
+    $query_fields = array($_REQUEST['alpha'], $_REQUEST['feedback'], USER['user']);
+
+    // $stmt = build_query($db, "INSERT INTO feedback (user, feedback, giver) VALUES (?, ?, ?)", $query_fields);
+    // $stmt->execute();
+
+    $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
+                  <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>
+                 </div>";
+
+    echo $response;
+    die();
+  }
 ?>
 <br>
   <div class="container text-center">
     <form id="myform">
-      <input type="text" class="form-control small" name="alpha" placeholder="mAlpha"></input><br>
-      <textarea class="form-control" name="feedback" rows="5" placeholder="Feedback!"></textarea><br>
+      <input type="text" class="form-control small" name="alpha" placeholder="mAlpha" autofocus required></input><br>
+      <textarea class="form-control" name="feedback" rows="5" placeholder="Feedback!" required></textarea><br>
       <button class="btn btn-default" type="submit">Submit</button>
     </form>
     <div id="output"></div>
@@ -41,19 +58,12 @@
 
 <script type="text/javascript">
   $("#myform").submit(function(e){
-    var formData = new FormData($(this)[0]);
-    $.ajax({
-      url: '../api/<?php echo $api_data['apikey']; ?>/give',
-      type: 'post',
-      data: formData,
-      async: false,
-      cache: false,
-      processData: false,
-      success: function(result) {
-        $("#output").html(result);
-      }
-    });
-    e.preventDefault();
-    return false;
+  $.ajax({
+    data: $("#myform").serialize(),
+    success: function(result) {
+      $("#output").html(result);
+    }
+  });
+  e.preventDefault();
   });
 </script>
