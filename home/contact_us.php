@@ -48,9 +48,9 @@
         <h4>Fill out the form below with questions, comments, concerns and<br> we will get back to you ASAP.</h4><br>
         <form id="myform">
           <div class="form-group">
-            <input type="text" name="name" class="form-control" style="max-width:50%;margin-left:auto;margin-right:auto;" placeholder="Name">
-            <br><input type="email" name="email" class="form-control" style="max-width:50%;margin-left:auto;margin-right:auto;" placeholder="Email">
-            <br><textarea class="form-control" name="feedback" style="max-width:50%;margin-left:auto;margin-right:auto;" rows="4"placeholder="Questions, Comments, Concerns"></textarea>
+            <input type="text" name="name" class="form-control" style="max-width:50%;margin-left:auto;margin-right:auto;" placeholder="Name" required>
+            <br><input type="email" name="email" class="form-control" style="max-width:50%;margin-left:auto;margin-right:auto;" placeholder="Email" required>
+            <br><textarea class="form-control" name="feedback" style="max-width:50%;margin-left:auto;margin-right:auto;" rows="4"placeholder="Questions, Comments, Concerns" required autofocus></textarea>
             <br><button type="submit" class="btn btn-default">Submit Feedback</button>
           </div>
         </form>
