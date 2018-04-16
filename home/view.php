@@ -51,20 +51,46 @@
     return $table;
   }
 
-  if (isset($_REQUEST['feedback']) && isset($_REQUEST['alpha'])) {
     $query_fields = array(USER['user']);
 
-    $stmt = build_query($db, "SELECT * FROM feedback WHERE alpha = ?", $query_fields);
+    $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
+    $stmt->store_result();
+    $stmt->bind_result($alpha, $msg, $giver, $timestamp);
 
-    print_r($stmt);
+    $recieved = array();
+    for ($i=0; $stmt->fetch(); $i++) {
+      // $recieved[$i]['alpha'] = $alpha;
+      $recieved[$i]['msg'] = $msg;
+      $recieved[$i]['giver'] = $giver;
+      $recieved[$i]['timestamp'] = $timestamp;
+    }
 
-    // $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
-    //               <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>
-    //              </div>";
-    //
-    // echo $response;
+    $stmt->close();
+    $stmt = build_query($db, "SELECT * FROM feedback WHERE giver = ?", $query_fields);
+
+    $stmt->store_result();
+    $stmt->bind_result($alpha, $msg, $giver, $timestamp);
+
+    $given = array();
+    for ($i=0; $stmt->fetch(); $i++) {
+      $given[$i]['alpha'] = $alpha;
+      $given[$i]['msg'] = $msg;
+      $given[$i]['giver'] = $giver;
+      $given[$i]['timestamp'] = $timestamp;
+    }
+
+    $stmt->close();
+
+    echo "<br><br><br>";
+
+    $table = assoc_arr_to_table($recieved, false);
+    $table2 = assoc_arr_to_table($given, false);
+
+    echo $table;
+    echo "<br><br>";
+    echo $table2;
+
     die();
-  }
 ?>
 
 </body>
