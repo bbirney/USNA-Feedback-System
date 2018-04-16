@@ -33,7 +33,6 @@
     $query_fields = array($_REQUEST['alpha'], $_REQUEST['feedback'], USER['user']);
 
     $stmt = build_query($db, "INSERT INTO feedback (user, feedback, giver) VALUES (?, ?, ?)", $query_fields);
-    $stmt->execute();
 
     $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
                   <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>

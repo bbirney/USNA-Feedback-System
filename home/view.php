@@ -26,3 +26,6 @@
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
 ?>
+  
+</body>
+</html>
