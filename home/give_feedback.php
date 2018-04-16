@@ -27,8 +27,6 @@
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
 
-  $api_data = retrieve_apikey($db, USER['user']);
-
   if (isset($_REQUEST['feedback']) && isset($_REQUEST['alpha'])) {
     $query_fields = array($_REQUEST['alpha'], $_REQUEST['feedback'], USER['user']);
 
