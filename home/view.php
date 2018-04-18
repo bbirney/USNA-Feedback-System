@@ -47,7 +47,7 @@
     $blurb += "<b>- ".($data->$giver)."</b><br>";
     $blurb += "<b>Timestamp: </b>".($data->$timestamp)."<br>";
     $blurb += "</div>";
-    
+
     return $blurb;
   }
 
@@ -100,7 +100,6 @@
     for ($i=0; $stmt->fetch(); $i++) {
       $given[$i]['alpha'] = $alpha;
       $given[$i]['msg'] = $msg;
-      $given[$i]['giver'] = $giver;
       $given[$i]['timestamp'] = $timestamp;
     }
 
@@ -114,6 +113,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <h3 class="text-center">Recieved Feedback</h3>
       <?php echo $table; ?>
     </div>
     <div class="col-md-1"></div>
@@ -121,6 +121,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <h3 class="text-center">Given Feedback</h3>
       <?php echo $table2; ?>
     </div>
     <div class="col-md-1"></div>
