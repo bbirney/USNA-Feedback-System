@@ -33,20 +33,20 @@
     public $timestamp;
 
     function __construct($alpha, $msg, $giver, $time) {
-      $this->$alpha = $alpha;
-      $this->$msg = $msg;
-      $this->$giver = $giver;
-      $this->$timestamp = $time;
+      $this->alpha = $alpha;
+      $this->msg = $msg;
+      $this->giver = $giver;
+      $this->timestamp = $time;
     }
   }
 
   function create_blurb($data) {
     $blurb =  "<div class=\"jumbotron\">";
-    $blurb += ($data->$alpha).": <br>";
-    $blurb += ($data->$msg)."<br>";
-    $blurb += "<b>- ".($data->$giver)."</b><br>";
-    $blurb += "<b>Timestamp: </b>".($data->$timestamp)."<br>";
-    $blurb += "</div>";
+    $blurb .= ($data->alpha).": <br>";
+    $blurb .= ($data->msg)."<br>";
+    $blurb .= "<b>- ".($data->giver)."</b><br>";
+    $blurb .= ($data->timestamp)."<br>";
+    $blurb .= "</div>";
 
     return $blurb;
   }
@@ -84,10 +84,8 @@
 
     $recieved = array();
     for ($i=0; $stmt->fetch(); $i++) {
-      // $recieved[$i]['alpha'] = $alpha;
-      $recieved[$i]['msg'] = $msg;
-      $recieved[$i]['giver'] = $giver;
-      $recieved[$i]['timestamp'] = $timestamp;
+      for ($i=0; $stmt->fetch(); $i++)
+        $recieved[$i] = create_blurb(new Feedback(USER['user'], $msg, $giver, $timestamp));
     }
 
     $stmt->close();
@@ -97,34 +95,27 @@
     $stmt->bind_result($alpha, $msg, $giver, $timestamp);
 
     $given = array();
-    for ($i=0; $stmt->fetch(); $i++) {
-      $given[$i]['alpha'] = $alpha;
-      $given[$i]['msg'] = $msg;
-      $given[$i]['timestamp'] = $timestamp;
-    }
+    for ($i=0; $stmt->fetch(); $i++)
+      $given[$i] = create_blurb(new Feedback($alpha, $msg, USER['user'], $timestamp));
 
     $stmt->close();
 
-    $table = assoc_arr_to_table($recieved, true);
-    $table2 = assoc_arr_to_table($given, true);
-
 ?>
-  <br><br>
-  <div class="row">
+  <br>
+  <div class="row clean">
     <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-5">
       <h3 class="text-center">Recieved Feedback</h3>
-      <?php echo $table; ?>
+      <div class="scrollable">
+        <?php for ($i=0;$i<sizeof($given);$i++) echo $given[$i]; ?>
+      </div>
     </div>
-    <div class="col-md-1"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-5">
       <h3 class="text-center">Given Feedback</h3>
-      <?php echo $table2; ?>
+      <div class="scrollable">
+        <?php for ($i=0;$i<sizeof($given);$i++) echo $given[$i]; ?>
+      </div>
     </div>
     <div class="col-md-1"></div>
-  </div>
 </body>
 </html>
