@@ -26,13 +26,38 @@
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
 
+  class Feedback {
+    public $alpha;
+    public $msg;
+    public $giver;
+    public $timestamp;
+
+    function __construct($alpha, $msg, $giver, $time) {
+      $this->$alpha = $alpha;
+      $this->$msg = $msg;
+      $this->$giver = $giver;
+      $this->$timestamp = $time;
+    }
+  }
+
+  function create_blurb($data) {
+    $blurb =  "<div class=\"jumbotron\">";
+    $blurb += ($data->$alpha).": <br>";
+    $blurb += ($data->$msg)."<br>";
+    $blurb += "<b>- ".($data->$giver)."</b><br>";
+    $blurb += "<b>Timestamp: </b>".($data->$timestamp)."<br>";
+    $blurb += "</div>";
+    
+    return $blurb;
+  }
+
   function assoc_arr_to_table($data, $header=false) {
     $table = "<table class=\"table table-striped table-bordered table-condensed\">";
 
     if ($header) {
       $table .= "<thead><tr>";
 
-      $keys = array_keys($data);
+      $keys = array_keys($data[0]);
       for ($i=0;$i<sizeof($keys);$i++) $table .= "<th>".$keys[$i]."</th>";
 
       $table .= "</tr></thead>";
@@ -40,7 +65,7 @@
 
     $table .= "<tbody>";
     foreach ($data as $i => $val) {
-      $table .= "<tr><td>".$i."</td>";
+      $table .= "<tr>";
       foreach ($val as $key => $value) {
         $table .= "<td>".$value."</td>";
       }
@@ -81,17 +106,24 @@
 
     $stmt->close();
 
-    echo "<br><br><br>";
+    $table = assoc_arr_to_table($recieved, true);
+    $table2 = assoc_arr_to_table($given, true);
 
-    $table = assoc_arr_to_table($recieved, false);
-    $table2 = assoc_arr_to_table($given, false);
-
-    echo $table;
-    echo "<br><br>";
-    echo $table2;
-
-    die();
 ?>
-
+  <br><br>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <?php echo $table; ?>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <?php echo $table2; ?>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
 </body>
 </html>
