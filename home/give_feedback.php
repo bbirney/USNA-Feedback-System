@@ -28,9 +28,10 @@
   require_once(WEB_PATH.'navbar.php');
 
   if (isset($_REQUEST['feedback']) && isset($_REQUEST['alpha'])) {
-    $query_fields = array($_REQUEST['alpha'], $_REQUEST['feedback'], USER['user']);
+    if (!isset($_REQUEST['good_bad'])) $_REQUEST['good_bad'] = 2;
+    $query_fields = array($_REQUEST['alpha'], $_REQUEST['feedback'], USER['user'], $_REQUEST['good_bad']);
 
-    $stmt = build_query($db, "INSERT INTO feedback (user, feedback, giver) VALUES (?, ?, ?)", $query_fields);
+    $stmt = build_query($db, "INSERT INTO feedback (user, feedback, giver, status) VALUES (?, ?, ?, ?)", $query_fields);
 
     $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
                   <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>
@@ -45,6 +46,8 @@
     <form id="myform">
       <input type="text" class="form-control small" name="alpha" placeholder="mAlpha" autofocus required></input><br>
       <textarea class="form-control" name="feedback" rows="5" placeholder="Feedback!" required></textarea><br>
+      <label class="feedback_option"><input type="radio" name="good_bad" value="1"> Positive </label>
+      <label class="feedback_option"><input type="radio" name="good_bad" value="0"> Negative</label><br>
       <button class="btn btn-default" type="submit">Submit</button>
     </form>
     <div id="output"></div>

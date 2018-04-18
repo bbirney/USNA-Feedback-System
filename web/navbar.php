@@ -55,16 +55,16 @@
 
   if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
     $user = '';
-    $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'icon'=>'glyphicon-home');
+    $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'ltext'=>'Feedback v3.0');
     $NAVBAR[] = array('url'=>'../home/faq.php', 'type'=>'url', 'title'=>'FAQ', 'icon'=>'glyphicon-question-sign');
     $NAVBAR[] = array('type'=>'seperator');
     $NAVBAR[] = array('url'=>'?login=1', 'type'=>'url', 'title'=>'Login', 'icon'=>'glyphicon-log-in');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
   } else {
-    $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'icon'=>'glyphicon-home');
+    $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'ltext'=>'Feedback v3.0');
+    $NAVBAR[] = array('url'=>'../home/faq.php', 'type'=>'url', 'title'=>'FAQ', 'icon'=>'glyphicon-question-sign');
     $NAVBAR[] = array('url' =>'../home/give_feedback.php', 'type'=>'url', 'title'=>'Give Feedback', 'icon'=>'glyphicon-comment');
     $NAVBAR[] = array('url' =>'../home/view.php', 'type'=>'url', 'title'=>'View Feedback', 'icon'=>'glyphicon-inbox');
-    $NAVBAR[] = array('url'=>'../home/faq.php', 'type'=>'url', 'title'=>'FAQ', 'icon'=>'glyphicon-question-sign');
     $NAVBAR[] = array('type'=>'seperator');
     $NAVBAR[] = array('url'=>'../home/welcome_page.php?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');

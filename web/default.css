@@ -9,9 +9,18 @@ body {
 
 .navbar-custom {
     color: #FFFFFF !important;
-    background-color: #054a71 !important;
+    background-color: #033049 !important;
     margin: 0 !important;
     padding: 0 !important;
+}
+
+a {
+  color: #FFFFFF !important;
+  background-color: #033049 !important;
+}
+
+a:hover {
+  color: #bfbfbf !important;
 }
 
 hr {
@@ -42,4 +51,18 @@ hr {
 
 .clean {
   width: 100vw;
+}
+
+.feedback_option {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.bg-danger {
+    background-color: #f2dede;
+}
+
+.bg-success {
+    background-color: #dff0d8;
 }

@@ -31,20 +31,27 @@
     public $msg;
     public $giver;
     public $timestamp;
+    public $status = 2;
 
-    function __construct($alpha, $msg, $giver, $time) {
+    function __construct($alpha, $msg, $giver, $status, $time) {
       $this->alpha = $alpha;
       $this->msg = $msg;
       $this->giver = $giver;
+      $this->status = $status;
       $this->timestamp = $time;
     }
   }
 
   function create_blurb($data) {
-    $blurb =  "<div class=\"jumbotron\">";
+    $blurb =  "<div class=\"jumbotron ";
+    if ($data->status == 1)      $blurb .= "bg-success\">";
+    else if ($data->status == 0) $blurb .= "bg-danger\">";
+    else $blurb .= "\">";
+
     $blurb .= ($data->alpha).": <br>";
     $blurb .= ($data->msg)."<br>";
     $blurb .= "<b>- ".($data->giver)."</b><br>";
+    $blurb .= "<br>";
     $blurb .= ($data->timestamp)."<br>";
     $blurb .= "</div>";
 
@@ -80,23 +87,22 @@
 
     $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
     $stmt->store_result();
-    $stmt->bind_result($alpha, $msg, $giver, $timestamp);
+    $stmt->bind_result($alpha, $msg, $giver, $status, $timestamp);
 
     $recieved = array();
     for ($i=0; $stmt->fetch(); $i++) {
-      for ($i=0; $stmt->fetch(); $i++)
-        $recieved[$i] = create_blurb(new Feedback(USER['user'], $msg, $giver, $timestamp));
+      $recieved[$i] = create_blurb(new Feedback(USER['user'], $msg, $giver, $status, $timestamp));
     }
 
     $stmt->close();
     $stmt = build_query($db, "SELECT * FROM feedback WHERE giver = ?", $query_fields);
 
     $stmt->store_result();
-    $stmt->bind_result($alpha, $msg, $giver, $timestamp);
+    $stmt->bind_result($alpha, $msg, $giver, $status, $timestamp);
 
     $given = array();
     for ($i=0; $stmt->fetch(); $i++)
-      $given[$i] = create_blurb(new Feedback($alpha, $msg, USER['user'], $timestamp));
+      $given[$i] = create_blurb(new Feedback($alpha, $msg, USER['user'], $status, $timestamp));
 
     $stmt->close();
 
@@ -107,7 +113,7 @@
     <div class="col-md-5">
       <h3 class="text-center">Recieved Feedback</h3>
       <div class="scrollable">
-        <?php for ($i=0;$i<sizeof($given);$i++) echo $given[$i]; ?>
+        <?php for ($i=0;$i<sizeof($recieved);$i++) echo $given[$i]; ?>
       </div>
     </div>
     <div class="col-md-5">
