@@ -26,37 +26,7 @@
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
 
-  class Feedback {
-    public $alpha;
-    public $msg;
-    public $giver;
-    public $timestamp;
-    public $status = 2;
-
-    function __construct($alpha, $msg, $giver, $status, $time) {
-      $this->alpha = $alpha;
-      $this->msg = $msg;
-      $this->giver = $giver;
-      $this->status = $status;
-      $this->timestamp = $time;
-    }
-  }
-
-  function create_blurb($data) {
-    $blurb =  "<div class=\"jumbotron ";
-    if ($data->status == 1)      $blurb .= "bg-success\">";
-    else if ($data->status == 0) $blurb .= "bg-danger\">";
-    else $blurb .= "\">";
-
-    $blurb .= ($data->alpha).": <br>";
-    $blurb .= ($data->msg)."<br>";
-    $blurb .= "<b>- ".($data->giver)."</b><br>";
-    $blurb .= "<br>";
-    $blurb .= ($data->timestamp)."<br>";
-    $blurb .= "</div>";
-
-    return $blurb;
-  }
+  require_once(LIBRARY_PATH.'lib_feedback.php');
 
   function assoc_arr_to_table($data, $header=false) {
     $table = "<table class=\"table table-striped table-bordered table-condensed\">";
