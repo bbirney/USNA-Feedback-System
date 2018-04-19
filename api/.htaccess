@@ -1,4 +1,4 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /Lab11/api/api.php?path=$1 [QSA,L]
+RewriteRule ^(.*)$ /~m200516/IT452/Lab11/api/api.php?path=$1 [QSA,L]  
