@@ -113,13 +113,13 @@
     <div class="col-md-5">
       <h3 class="text-center">Recieved Feedback</h3>
       <div class="scrollable">
-        <?php for ($i=0;$i<sizeof($recieved);$i++) echo $given[$i]; ?>
+        <?php for ($i=sizeof($recieved)-1;$i>=0;$i--) echo $recieved[$i]; ?>
       </div>
     </div>
     <div class="col-md-5">
       <h3 class="text-center">Given Feedback</h3>
       <div class="scrollable">
-        <?php for ($i=0;$i<sizeof($given);$i++) echo $given[$i]; ?>
+        <?php for ($i=sizeof($given)-1;$i>=0;$i--) echo $given[$i]; ?>
       </div>
     </div>
     <div class="col-md-1"></div>
