@@ -1,4 +1,3 @@
-###############################################################################
 DROP TABLE IF EXISTS feedback;
 CREATE TABLE `feedback` (
   `user` VARCHAR(20) NOT NULL,
