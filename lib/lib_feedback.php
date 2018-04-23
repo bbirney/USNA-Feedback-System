@@ -13,34 +13,41 @@
   }
 
   class Feedback {
-    public $alpha;
-    public $msg;
+    public $user;
+    public $do_well;
+    public $improve;
     public $giver;
-    public $timestamp;
     public $status = 2;
+    public $timestamp;
+    public $know = 3;
 
-    function __construct($alpha, $msg, $giver, $status, $time) {
-      $this->alpha = $alpha;
-      $this->msg = $msg;
+    function __construct($user, $do_well, $improve, $giver, $status, $time, $know) {
+      $this->user = $user;
+      $this->do_well = $do_well;
+      $this->improve = $improve;
       $this->giver = $giver;
       $this->status = $status;
       $this->timestamp = $time;
+      $this->know = $know;
     }
-  }
 
-  function create_blurb($data) {
-    $blurb =  "<div class=\"jumbotron ";
-    if ($data->status == 1)      $blurb .= "bg-success\">";
-    else if ($data->status == 0) $blurb .= "bg-danger\">";
-    else $blurb .= "\">";
+    function create_blurb() {
+      $blurb =  "<div class=\"jumbotron ";
+      if ($this->status == 1)      $blurb .= "bg-success\">";
+      else if ($this->status == 0) $blurb .= "bg-danger\">";
+      else $blurb .= "\">";
 
-    $blurb .= ($data->alpha).": <br>";
-    $blurb .= ($data->msg)."<br>";
-    $blurb .= "<b>- ".($data->giver)."</b><br>";
-    $blurb .= "<br>";
-    $blurb .= ($data->timestamp)."<br>";
-    $blurb .= "</div>";
+      $blurb .= ($this->user).": <br>";
+      $blurb .= "What you do well:<br>";
+      $blurb .= ($this->do_well)."<br>";
+      $blurb .= "What you can improve:<br>";
+      $blurb .= ($this->improve)."<br>";
+      $blurb .= "<b>- ".($this->giver)."</b><br>";
+      $blurb .= "<br>";
+      $blurb .= ($this->timestamp)."<br>";
+      $blurb .= "</div>";
 
-    return $blurb;
+      return $blurb;
+    }
   }
 ?>
