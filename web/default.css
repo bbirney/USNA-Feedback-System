@@ -57,6 +57,7 @@ hr {
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
+  
 }
 
 .bg-danger {
@@ -65,4 +66,9 @@ hr {
 
 .bg-success {
     background-color: #dff0d8;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
