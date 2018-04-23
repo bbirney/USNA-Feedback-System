@@ -30,23 +30,23 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 revealable">
-      <span class="content">   The answer is 42</span>
+      <canvas id="myCanvas" width="640" height="480">
+        <p>Apparently your browser doesn't support this... oh well, go upgrade...</p>
+      </canvas>
+      <script type="text/javascript">
+        var myCanvas = $('#myCanvas');
+      </script>
     </div>
   </div>
 
 </body>
 </html>
 <script type="text/javascript">
-  $(document).ready(function() {
-    var $body = $('.revealable').find('.content');
-    $body.before('<span class="showme"><i class="glyphicon glyphicon-plus" style="color:blue"></i></span>');
-    $body.hide();
-  });
-
-
-
-  $('.revealable').click(function() {
-    var $body = $(this).closest('.revealable').find('.content');
-    $('.content').show('slow', 'linear');
+  myCanvas.drawPolygon({
+    strokeStyle: 'black',
+    strokeWidth: 4,
+    x: 200, y: 100,
+    radius: 50,
+    sides: 3
   });
 </script>
