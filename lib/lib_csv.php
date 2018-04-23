@@ -71,4 +71,29 @@
     }
   }
 
+  function assoc_arr_to_table($data, $header=false) {
+    $table = "<table class=\"table table-striped table-bordered table-condensed\">";
+
+    if ($header) {
+      $table .= "<thead><tr>";
+
+      $keys = array_keys($data[0]);
+      for ($i=0;$i<sizeof($keys);$i++) $table .= "<th>".$keys[$i]."</th>";
+
+      $table .= "</tr></thead>";
+    }
+
+    $table .= "<tbody>";
+    foreach ($data as $i => $val) {
+      $table .= "<tr>";
+      foreach ($val as $key => $value) {
+        $table .= "<td>".$value."</td>";
+      }
+      $table .= "</tr>";
+    }
+    $table .= "</tbody></table>";
+
+    return $table;
+  }
+
  ?>
