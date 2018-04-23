@@ -28,53 +28,31 @@
 
   require_once(LIBRARY_PATH.'lib_feedback.php');
 
-  function assoc_arr_to_table($data, $header=false) {
-    $table = "<table class=\"table table-striped table-bordered table-condensed\">";
+  $query_fields = array(USER['user']);
 
-    if ($header) {
-      $table .= "<thead><tr>";
+  $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
+  $stmt->store_result();
+  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know);
 
-      $keys = array_keys($data[0]);
-      for ($i=0;$i<sizeof($keys);$i++) $table .= "<th>".$keys[$i]."</th>";
-
-      $table .= "</tr></thead>";
-    }
-
-    $table .= "<tbody>";
-    foreach ($data as $i => $val) {
-      $table .= "<tr>";
-      foreach ($val as $key => $value) {
-        $table .= "<td>".$value."</td>";
-      }
-      $table .= "</tr>";
-    }
-    $table .= "</tbody></table>";
-
-    return $table;
+  $recieved = array();
+  for ($i=0; $stmt->fetch(); $i++) {
+    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know);
+    $recieved[$i] = $fb->create_blurb();
   }
 
-    $query_fields = array(USER['user']);
+  $stmt->close();
+  $stmt = build_query($db, "SELECT * FROM feedback WHERE giver = ?", $query_fields);
 
-    $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
-    $stmt->store_result();
-    $stmt->bind_result($alpha, $msg, $giver, $status, $timestamp);
+  $stmt->store_result();
+  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know);
 
-    $recieved = array();
-    for ($i=0; $stmt->fetch(); $i++) {
-      $recieved[$i] = create_blurb(new Feedback(USER['user'], $msg, $giver, $status, $timestamp));
-    }
+  $given = array();
+  for ($i=0; $stmt->fetch(); $i++) {
+    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know);
+    $given[$i] = $fb->create_blurb();
+  }
 
-    $stmt->close();
-    $stmt = build_query($db, "SELECT * FROM feedback WHERE giver = ?", $query_fields);
-
-    $stmt->store_result();
-    $stmt->bind_result($alpha, $msg, $giver, $status, $timestamp);
-
-    $given = array();
-    for ($i=0; $stmt->fetch(); $i++)
-      $given[$i] = create_blurb(new Feedback($alpha, $msg, USER['user'], $status, $timestamp));
-
-    $stmt->close();
+  $stmt->close();
 
 ?>
   <br>
