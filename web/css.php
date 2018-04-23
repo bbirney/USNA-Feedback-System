@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="../web/DataTables/datatables.min.css"/>
     <script type="text/javascript" src="../web/DataTables/datatables.min.js"></script>
     <script type="text/javascript" src="../web/Chart.bundle.min.js"></script>
-  </head>
-  <body>
-    <br/><br/>
+    <script type="text/javascript" src="../web/jcanvas.js"></script>
+</head>
+<body>
+  <br/><br/>
