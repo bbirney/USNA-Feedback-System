@@ -15,9 +15,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!-- NavBar Branding if Interested
-            <a class="navbar-brand" href="#"><img alt="Navbar!" src="css/images/web-icon.png" width="24"></a>
-          -->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

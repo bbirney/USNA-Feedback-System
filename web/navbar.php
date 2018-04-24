@@ -41,18 +41,6 @@
   $USER_OPTIONS = array();
   $user = USER['user'];
 
-  #############################################################################
-  # Modules based Menu Options (USER SECTION)
-  #############################################################################
-  // if (defined('NAVBAR_MODULES') && isset(NAVBAR_MODULES['user'])) {
-  //   foreach(NAVBAR_MODULES['user'] as $pos => $rows) {
-  //     foreach ($rows as $irow => $row) {
-  //       $USER_OPTIONS[] = array('url'=>$row['file'], 'type'=>'url', 'title'=>$row['display'], 'text'=>$row['name']);
-  //     }
-  //   }
-  // }
-
-
   if (!isset(USER['user']) || USER['user'] == 'guest' || USER['user'] == 'no-one' || USER['user'] == '') {
     $user = '';
     $NAVBAR[] = array('url'=>'../home/welcome_page.php', 'type'=>'url', 'title'=>'Home', 'ltext'=>'Feedback v3.0');
@@ -68,27 +56,6 @@
     $NAVBAR[] = array('type'=>'seperator');
     $NAVBAR[] = array('url'=>'../home/welcome_page.php?logoff=1','type'=>'url', 'title'=>'Logout', 'icon'=>'glyphicon-log-out');
     $NAVBAR[] = array('url' =>'../home/contact_us.php', 'type'=>'url', 'title'=>'Contact Us!', 'rtext'=>'Contact Us');
-  }
-
-
-  #############################################################################
-  # Modules based Menu Options (other sections)
-  #############################################################################
-  foreach(MODULE_NAV as $heading => $config) {
-  if (defined('MODULE_NAV') && defined('NAVBAR_MODULES')) {
-      if ($heading == 'seperator') {
-        $NAVBAR[] = array('type'=>'seperator');
-      } elseif ($heading != 'user' && isset(NAVBAR_MODULES[$heading])) {
-        if (isset(NAVBAR_MODULES[$heading])) {
-          $options = array();
-          foreach(NAVBAR_MODULES[$heading] as $pos => $rows) {
-            foreach ($rows as $irow => $row) {
-              $options[] = array('url'=>$row['file'], 'type'=>'url', 'title'=>$row['display'], 'text'=>$row['name']);
-            }
-          }
-        }
-      }
-    }
   }
 
   #############################################################################
