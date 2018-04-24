@@ -45,7 +45,7 @@ hr {
 }
 
 .scrollable {
-  height:80vh;
+  height:72vh;
   overflow-y: scroll;
 }
 
@@ -57,7 +57,7 @@ hr {
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  
+
 }
 
 .bg-danger {
