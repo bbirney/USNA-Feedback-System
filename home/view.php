@@ -34,10 +34,10 @@
   $stmt->store_result();
   $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know);
 
-  $recieved = array();
+  $received = array();
   for ($i=0; $stmt->fetch(); $i++) {
     $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know);
-    $recieved[$i] = $fb->create_blurb();
+    $received[$i] = $fb->create_blurb();
   }
 
   $stmt->close();
@@ -55,17 +55,17 @@
   $stmt->close();
 
 ?>
-  <br>
+<h1 class="text-center">View Feedback</h1>
   <div class="row clean">
     <div class="col-md-1"></div>
     <div class="col-md-5">
-      <h3 class="text-center">Recieved Feedback</h3>
+      <h3 class="text-center">Received (<?php echo sizeof($received); ?>)</h3>
       <div class="scrollable">
-        <?php for ($i=sizeof($recieved)-1;$i>=0;$i--) echo $recieved[$i]; ?>
+        <?php for ($i=sizeof($received)-1;$i>=0;$i--) echo $received[$i]; ?>
       </div>
     </div>
     <div class="col-md-5">
-      <h3 class="text-center">Given Feedback</h3>
+      <h3 class="text-center">Given (<?php echo sizeof($given); ?>)</h3>
       <div class="scrollable">
         <?php for ($i=sizeof($given)-1;$i>=0;$i--) echo $given[$i]; ?>
       </div>
