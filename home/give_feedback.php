@@ -55,7 +55,8 @@
       <textarea class="form-control" name="improve" rows="5" placeholder="What could he/she improve?" required></textarea><br>
       <b>Overall, is your feedback positive or negative? (Optional)</b><br>
       <label class="feedback_option"><input type="radio" name="good_bad" value="1"> Positive </label>
-      <label class="feedback_option"><input type="radio" name="good_bad" value="0"> Negative</label><br>
+      <label class="feedback_option"><input type="radio" name="good_bad" value="0"> Negative</label>
+      <label class="feedback_option"><input type="radio" name="good_bad" value="2" checked> N/A</label><br>
       <button class="btn btn-default" type="submit">Submit</button>
     </form>
     <div id="output"></div>
