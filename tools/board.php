@@ -9,7 +9,7 @@
                       'position'   => 2,
                       'student'    => true,
                       'instructor' => true,
-                      'guest'      => true,
+                      'guest'      => false,
                       'access'     => array());
   ###############################################################
 
@@ -26,40 +26,29 @@
   #       support in your future templates...
   require_once(WEB_PATH.'navbar.php');
 
-  function update_board() {
+  if (isset($_REQUEST['msg'])) {
+    $query_fields = array(USER['user'], $_REQUEST['msg']);
+    $stmt = build_query($db, "INSERT INTO message_board (user, msg) VALUES (?, ?)", $query_fields);
+    $stmt->close();
+    unset($_REQUEST);
   }
 
+  $api_data = retrieve_apikey($db, USER['user']);
 
-  class Message {
-    public $name;
-    public $msg;
-    public $time;
-
-    function __construct($name, $msg, $time) {
-      $this->name = $name;
-      $this->msg = $msg;
-      $this->time = $time;
-    }
-
-    function create_blurb() {
-      $blurb =  "<div class=\"jumbotron mb\"";
-      $blurb .= ($this->msg);
-      $blurb .= "</div>";
-      $blurb .= ($this->name)." (".($this->time).")<br>";
-
-      return $blurb;
-    }
+  if (count($api_data) < 1) {
+    generate_apikey($db, USER['user']);
+    $api_data = retrieve_apikey($db, USER['user']);
   }
 ?>
 <br><br>
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
       <div class="row scrollable" id="content"></div>
       <form id='myform'>
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon3">Message: </span>
-          <input type="text" class="form-control" name="myinfo" aria-describedby="basic-addon3">
+          <input type="text" class="form-control" name="msg" aria-describedby="basic-addon3">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Submit</button>
           </span>
@@ -71,7 +60,26 @@
 </body>
 </html>
 <script type="text/javascript">
-  setInterval(function() {
-    $('#content').load('../api/<?php echo retrieve_apikey($db, USER['user'])['apikey']; ?>/board');
-  }, 5000);
+  $(document).ready(function(){
+    $('#content').load('../api/<?php echo $api_data['apikey']; ?>/board');
+    setInterval(
+      function(){
+        $('#content').load('../api/<?php echo $api_data['apikey']; ?>/board');
+      },
+      5000);
+
+      $('#myform').submit(function(e){
+        $.ajax({
+          url: '../api/<?php echo $api_data['apikey']; ?>/board',
+          data: $("#myform").serialize(),
+          success: function(result) {
+            $("#content").html(result);
+            $('input[type="text"], textarea').val('');
+            $('input[type="text"], textarea').focus();
+          }
+        });
+        e.preventDefault();
+    });
+  });
+
 </script>
