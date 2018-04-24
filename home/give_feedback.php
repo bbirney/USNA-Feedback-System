@@ -41,18 +41,19 @@
     die();
   }
 ?>
-<br>
+  <h1 class="text-center">Give Feedback</h1><br>
   <div class="container text-center">
     <form id="myform">
       <input type="text" class="form-control small" name="alpha" placeholder="mAlpha" autofocus required></input><br>
-      How well do you know this person?<br>
-      <label class="feedback_option">1 <input type="radio" name="know " value="1" ></label>
+      <b>How well do you know this person?</b><br>
+      <label class="feedback_option">1 <input type="radio" name="know" value="1" ></label>
       <label class="feedback_option"><input type="radio" name="know" value="2" ></label>
       <label class="feedback_option"><input type="radio" name="know" value="3" ></label>
       <label class="feedback_option"><input type="radio" name="know" value="4" ></label>
       <label class="feedback_option"><input type="radio" name="know" value="5"> 5</label><br><br>
       <textarea class="form-control" name="do_well" rows="5" placeholder="What does he/she do well?" required></textarea><br>
       <textarea class="form-control" name="improve" rows="5" placeholder="What could he/she improve?" required></textarea><br>
+      <b>Overall, is your feedback positive or negative? (Optional)</b><br>
       <label class="feedback_option"><input type="radio" name="good_bad" value="1"> Positive </label>
       <label class="feedback_option"><input type="radio" name="good_bad" value="0"> Negative</label><br>
       <button class="btn btn-default" type="submit">Submit</button>
