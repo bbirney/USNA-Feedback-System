@@ -37,12 +37,13 @@
       else if ($this->status == 0) $blurb .= "bg-danger\">";
       else $blurb .= "\">";
 
-      $blurb .= ($this->user).": <br>";
-      $blurb .= "What you do well:<br>";
+      $blurb .= "<b>".($this->user).": </b><br>";
+      $blurb .= "<b>This person knows you as well as (1-5 scale): </b>".($this->know)."<br><br>";
+      $blurb .= "<b>What you do well:</b><br>";
       $blurb .= ($this->do_well)."<br>";
-      $blurb .= "What you can improve:<br>";
-      $blurb .= ($this->improve)."<br>";
-      $blurb .= "<b>- ".($this->giver)."</b><br>";
+      $blurb .= "<b>What you can improve:</b><br>";
+      $blurb .= ($this->improve)."<br><br>";
+      $blurb .= "<b>- ".($this->giver)."</b>";
       $blurb .= "<br>";
       $blurb .= ($this->timestamp)."<br>";
       $blurb .= "</div>";
