@@ -77,14 +77,23 @@ hr {
   width: auto !important;
   display: inline-block;
   max-width: 40%;
-  margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
   padding: 5px;
+  overflow: hidden;
 }
 
-.bg-primary {
+.bg-active {
   background-color: #3071a9;
   color: white;
-  margin-left:auto;
-  margin-right:0;
+  margin-left:auto !important;
+  margin-right:0 !important;
+  float: right;
+  text-align: left;
+}
+
+.contain {
+  width: 100%;
+  overflow: hidden;
+  /* background-color: yellow; */
 }

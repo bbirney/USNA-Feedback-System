@@ -19,14 +19,17 @@
     }
 
     function create_blurb() {
-      $blurb = "<div>";
+      $blurb .= "<div class=\"contain\"";
+      if ($this->name == USER['user']) $blurb .= "style=\"text-align:right;\"";
+      $blurb .= ">";
+      $blurb .= ($this->name)."<br>";
       $blurb .=  "<div class=\"jumbotron mb ";
-      if ($this->name == USER['user']) $blurb .= "bg-primary";
+      if ($this->name == USER['user']) $blurb .= "bg-active";
       $blurb .= "\">";
       $blurb .= ($this->msg);
       $blurb .= "</div><br>";
-      $blurb .= ($this->name)."<br>";
       $blurb .= "</div>";
+      if ($this->name == USER['user']) $blurb .= "<br>";
 
       return $blurb;
     }
