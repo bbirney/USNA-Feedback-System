@@ -67,14 +67,22 @@
       },
       5000);
 
+      window.setInterval(function() {
+        var board = $('#content');
+        board.scrollTop = board.scrollHeight;
+      }, 10000);
+
       $('#myform').submit(function(e){
         $.ajax({
           url: '../api/<?php echo $api_data['apikey']; ?>/board',
           data: $("#myform").serialize(),
           success: function(result) {
-            $("#content").html(result);
+            $('#content').html(result);
             $('input[type="text"], textarea').val('');
             $('input[type="text"], textarea').focus();
+            $('#content').scrollTo(0,$('#content').scrollHeight);
+            var board = document.getElementById('content');
+            board.scrollTop = board.scrollHeight;
           }
         });
         e.preventDefault();
