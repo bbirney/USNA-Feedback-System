@@ -29,13 +29,18 @@
 
   if (isset($_REQUEST['do_well']) && isset($_REQUEST['alpha'])&& isset($_REQUEST['improve'])) {
     if (!isset($_REQUEST['good_bad'])) $_REQUEST['good_bad'] = 2;
-    $query_fields = array($_REQUEST['alpha'], $_REQUEST['do_well'], $_REQUEST['improve'], USER['user'], $_REQUEST['good_bad'], $_REQUEST['know']);
+    $id = generate_uuid();
+    $query_fields = array($_REQUEST['alpha'], $_REQUEST['do_well'], $_REQUEST['improve'], USER['user'], $_REQUEST['good_bad'], $_REQUEST['know'], $id);
 
-    $stmt = build_query($db, "INSERT INTO feedback (user, do_well, improve, giver, status, know) VALUES (?, ?, ?, ?, ?, ?)", $query_fields);
+    $stmt = build_query($db, "INSERT INTO feedback (user, do_well, improve, giver, status, know, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $query_fields);
 
     $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
                   <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>
                  </div>";
+    $stmt->close();
+
+    $stmt = build_query($db, "INSERT INTO feedback_id (id) VALUES (?)", array($id));
+    $stmt->close();
 
     echo $response;
     die();
