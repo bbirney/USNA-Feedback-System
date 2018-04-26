@@ -19,9 +19,6 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
 
-            <!-- NavBar Title -->
-            <li><a href="<?php echo $NAVBAR_TITLE_URL; ?>"><?php echo $NAVBAR_TITLE; ?></a></li>
-
             <?php
 
               foreach ($NAVBAR as $i => $navbar_item) {
