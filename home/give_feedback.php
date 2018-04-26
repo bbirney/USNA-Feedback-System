@@ -45,11 +45,6 @@
     $stmt = build_query($db, "INSERT INTO feedback_id (id) VALUES (?)", array($id));
     $stmt->close();
 
-
-
-
-
-
     echo $response;
     die();
   }
@@ -65,7 +60,7 @@
       <label class="feedback_option"><input type="radio" name="know" value="4" ></label>
       <label class="feedback_option"><input type="radio" name="know" value="5"> 5</label><br><br>
       <textarea class="form-control" name="do_well" rows="5" placeholder="What does he/she do well?" required autocomplete="off"></textarea><br>
-      <textarea class="form-control" name="improve" rows="5" placeholder="What could he/she improve?" required autocomplete="off"></textarea><br>
+      <textarea class="form-control" name="improve" rows="5" placeholder="Be a part of the solution. What could he/she improve?" required autocomplete="off"></textarea><br>
       <b>Overall, is your feedback positive or negative? (Optional)</b><br>
       <label class="feedback_option"><input type="radio" name="good_bad" value="1"> Positive </label>
       <label class="feedback_option"><input type="radio" name="good_bad" value="0"> Negative</label>
