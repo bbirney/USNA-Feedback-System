@@ -13,7 +13,7 @@
                       'access'     => array());
   ###############################################################
 
-  $PAGE_TITLE = "View Feedback";
+  $PAGE_TITLE = "Message Board";
 
   # Load in Configuration Parameters
   require_once("../etc/config.inc.php");
