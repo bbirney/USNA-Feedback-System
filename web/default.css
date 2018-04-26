@@ -97,3 +97,21 @@ hr {
   overflow: hidden;
   /* background-color: yellow; */
 }
+
+.blurb-icon {
+  float: right;
+  margin: 0px;
+  background-color: inherit;
+}
+
+.blurb-icon:hover {
+  background-color: inherit;
+}
+
+.good {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
