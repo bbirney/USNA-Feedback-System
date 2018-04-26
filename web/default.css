@@ -115,3 +115,7 @@ hr {
 .bad {
   color: red;
 }
+
+ul {
+    list-style-type: disc;
+}
