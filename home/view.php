@@ -36,18 +36,7 @@
 
   $received = array();
   for ($i=0; $stmt->fetch(); $i++) {
-    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
-
-    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
-
-    $stmt->store_result();
-    $stmt->bind_result($id, $approval);
-    $stmt->fetch();
-
-    $fb->setApp($approval);
-    $stmt->close();
-
-    $received[$i] = $fb->create_blurb();
+    $received[$i] = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
   }
 
   $stmt->close();
@@ -58,20 +47,32 @@
 
   $given = array();
   for ($i=0; $stmt->fetch(); $i++) {
-    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
+    $given[$i] = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
+  }
 
+  $stmt->close();
+
+  for ($i=0;$i<sizeof($given);$i++) {
     $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
 
     $stmt->store_result();
     $stmt->bind_result($id, $approval);
     $stmt->fetch();
-    $fb->setApp($approval);
-    $stmt->close();
 
-    $given[$i] = $fb->create_blurb();
+    $given[$i]->setApp($approval);
+    $stmt->close();
   }
 
-  $stmt->close();
+  for ($i=0;$i<sizeof($received);$i++) {
+    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
+
+    $stmt->store_result();
+    $stmt->bind_result($id, $approval);
+    $stmt->fetch();
+
+    $received[$i]->setApp($approval);
+    $stmt->close();
+  }
 
 ?>
 <h1 class="text-center">View Feedback</h1>
@@ -80,13 +81,13 @@
     <div class="col-md-5">
       <h3 class="text-center">Received (<?php echo sizeof($received); ?>)</h3>
       <div class="scrollable">
-        <?php for ($i=sizeof($received)-1;$i>=0;$i--) echo $received[$i]; ?>
+        <?php for ($i=sizeof($received)-1;$i>=0;$i--) echo $received[$i]->create_blurb(USER['user']); ?>
       </div>
     </div>
     <div class="col-md-5">
       <h3 class="text-center">Given (<?php echo sizeof($given); ?>)</h3>
       <div class="scrollable">
-        <?php for ($i=sizeof($given)-1;$i>=0;$i--) echo $given[$i]; ?>
+        <?php for ($i=sizeof($given)-1;$i>=0;$i--) echo $given[$i]->create_blurb(USER['user']); ?>
       </div>
     </div>
     <div class="col-md-1"></div>
