@@ -32,11 +32,21 @@
 
   $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
   $stmt->store_result();
-  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know);
+  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know, $id);
 
   $received = array();
   for ($i=0; $stmt->fetch(); $i++) {
-    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know);
+    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
+
+    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
+
+    $stmt->store_result();
+    $stmt->bind_result($id, $approval);
+    $stmt->fetch();
+
+    $fb->setApp($approval);
+    $stmt->close();
+
     $received[$i] = $fb->create_blurb();
   }
 
@@ -44,11 +54,20 @@
   $stmt = build_query($db, "SELECT * FROM feedback WHERE giver = ?", $query_fields);
 
   $stmt->store_result();
-  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know);
+  $stmt->bind_result($user, $do_well, $improve, $giver, $status, $time, $know, $id);
 
   $given = array();
   for ($i=0; $stmt->fetch(); $i++) {
-    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know);
+    $fb = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
+
+    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
+
+    $stmt->store_result();
+    $stmt->bind_result($id, $approval);
+    $stmt->fetch();
+    $fb->setApp($approval);
+    $stmt->close();
+
     $given[$i] = $fb->create_blurb();
   }
 
@@ -73,3 +92,14 @@
     <div class="col-md-1"></div>
 </body>
 </html>
+<script type="text/javascript">
+  $("#review").submit(function(e){
+  $.ajax({
+    data: $("#review").serialize(),
+    success: function(result) {
+      //NOTE: Nothing should happen
+    }
+  });
+  e.preventDefault();
+  });
+</script>
