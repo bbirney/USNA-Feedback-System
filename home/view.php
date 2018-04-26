@@ -28,6 +28,12 @@
 
   require_once(LIBRARY_PATH.'lib_feedback.php');
 
+  $api_data = retrieve_apikey($db, USER['user']);
+  if (count($api_data) < 1) {
+    generate_apikey($db, USER['user']);
+    $api_data = retrieve_apikey($db, USER['user']);
+  }
+
   $query_fields = array(USER['user']);
 
   $stmt = build_query($db, "SELECT * FROM feedback WHERE user = ?", $query_fields);
@@ -91,16 +97,18 @@
       </div>
     </div>
     <div class="col-md-1"></div>
+  </div>
+  <br>
+  <div class="col-md-4"></div>
+  <div class="col-md-4" id="output"></div>
 </body>
 </html>
 <script type="text/javascript">
-  $("#review").submit(function(e){
-  $.ajax({
-    data: $("#review").serialize(),
-    success: function(result) {
-      //NOTE: Nothing should happen
-    }
-  });
-  e.preventDefault();
+  $(document).ready(function() {
+    $("#review").submit(function(e) {
+      console.log($(this).serialize());
+      $("#output").load('../api/<?php echo $api_data['apikey']; ?>/approval', $("#review").serialize());
+      e.preventDefault();
+    });
   });
 </script>
