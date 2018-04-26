@@ -34,7 +34,7 @@
       $this->id = $id;
     }
 
-    function create_blurb() {
+    function create_blurb($user) {
       $blurb =  "<div class=\"jumbotron ";
       if ($this->status == 1)      $blurb .= "bg-success\">";
       else if ($this->status == 0) $blurb .= "bg-danger\">";
@@ -50,7 +50,7 @@
       $blurb .= "<br>";
       $blurb .= ($this->timestamp)."<br>";
 
-      if ($this->approval == 42) {
+      if ($this->approval == 42 && ($this->giver != $user)) {
         //NOTE: Configure 3 buttons (one for good, another for bad, a third for report) THIS WILL BE A FORM
         $blurb .=
         "<form id=\"review\">
@@ -75,6 +75,8 @@
       } else if ($this->approval == 2) {
         //NOTE: Feedback will have been reported, so it won't be shown
         return "";
+      } else {
+        $blurb .= "<i title=\"Feedback Not Yet Seen\" class=\"glyphicon glyphicon-eye-close blurb-icon\"></i>";
       }
 
       $blurb .= "</div>";
