@@ -6,5 +6,12 @@ CREATE TABLE `feedback` (
   `giver` VARCHAR(20) NOT NULL,
   `status` INT NOT NULL DEFAULT 2,
   `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `know` INT NOT NULL
+  `know` INT NOT NULL,
+  `id` VARCHAR(96) NOT NULL
+);
+
+DROP TABLE IF EXISTS feedback_id;
+CREATE TABLE `feedback_id` (
+  `id` VARCHAR(96) NOT NULL,
+  `approval` INT NOT NULL DEFAULT 42
 );
