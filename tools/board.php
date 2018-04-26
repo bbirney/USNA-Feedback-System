@@ -59,10 +59,10 @@
 </body>
 </html>
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(document).ready(function() {
     $('#content').load('../api/<?php echo $api_data['apikey']; ?>/board');
     setInterval(
-      function(){
+      function() {
         $('#content').load('../api/<?php echo $api_data['apikey']; ?>/board');
       },
       5000);
