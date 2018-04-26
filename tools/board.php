@@ -47,7 +47,7 @@
       <div class="row scrollable" id="content"></div>
       <form id='myform'>
         <div class="input-group">
-          <input type="text" class="form-control" name="msg" aria-describedby="basic-addon3" placeholder="Type a Message...">
+          <input type="text" class="form-control" name="msg" aria-describedby="basic-addon3" placeholder="Type a Message..." autocomplete="off">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Submit</button>
           </span>
