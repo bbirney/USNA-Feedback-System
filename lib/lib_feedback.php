@@ -20,8 +20,10 @@
     public $status = 2;
     public $timestamp;
     public $know = 3;
+    public $id;
+    public $approval = 42;
 
-    function __construct($user, $do_well, $improve, $giver, $status, $time, $know) {
+    function __construct($user, $do_well, $improve, $giver, $status, $time, $know, $id) {
       $this->user = $user;
       $this->do_well = $do_well;
       $this->improve = $improve;
@@ -29,6 +31,7 @@
       $this->status = $status;
       $this->timestamp = $time;
       $this->know = $know;
+      $this->id = $id;
     }
 
     function create_blurb() {
@@ -46,9 +49,41 @@
       $blurb .= "<b>- ".($this->giver)."</b>";
       $blurb .= "<br>";
       $blurb .= ($this->timestamp)."<br>";
+
+      if ($this->approval == 42) {
+        //NOTE: Configure 3 buttons (one for good, another for bad, a third for report) THIS WILL BE A FORM
+        $blurb .=
+        "<form id=\"review\">
+        <div class=\"btn-group blurb-icon\">
+          <button name=\"helpful\" title=\"This Feedback Was Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"".$this->id."-1\">
+            <i class=\"glyphicon glyphicon-thumbs-up blurb-icon\">  </i>
+          </button>
+          <button name=\"helpful\" title=\"This Feedback Was Not Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"".$this->id."-0\">
+            <i class=\"glyphicon glyphicon-thumbs-down blurb-icon\"></i>
+          </button>
+          <button name=\"helpful\" title=\"Report This Feedback\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"".$this->id."-2\">
+            <i class=\"glyphicon glyphicon-warning-sign blurb-icon\"></i>
+          </button>
+        </div>
+        </form>";
+      } else if ($this->approval == 0) {
+        //NOTE: Configure 1 glyphicon with a thumbs down
+        $blurb .= "<i title=\"This was Bad Feedback\" class=\"glyphicon glyphicon-thumbs-down blurb-icon bad\"></i>";
+      } else if ($this->approval == 1) {
+        //NOTE: Configure 1 glyphicon with a thumbs up
+        $blurb .= "<i title=\"This was Good Feedback\" class=\"glyphicon glyphicon-thumbs-up blurb-icon good\"></i>";
+      } else if ($this->approval == 2) {
+        //NOTE: Feedback will have been reported, so it won't be shown
+        return "";
+      }
+
       $blurb .= "</div>";
 
       return $blurb;
+    }
+
+    function setApp($approval) {
+      $this->approval = $approval;
     }
   }
 ?>
