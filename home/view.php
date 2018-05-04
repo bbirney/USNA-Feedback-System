@@ -105,9 +105,10 @@
 </html>
 <script type="text/javascript">
   $(document).ready(function() {
+    var hidden;
     $("#review").submit(function(e) {
-      console.log($(this).serialize());
-      $("#output").load('../api/<?php echo $api_data['apikey']; ?>/approval', $("#review").serialize());
+      console.log(hidden);
+      // $("#output").load('../api/<?php echo $api_data['apikey']; ?>/approval', $(this).serialize());
       e.preventDefault();
     });
   });
