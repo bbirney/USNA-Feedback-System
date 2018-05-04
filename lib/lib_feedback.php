@@ -55,13 +55,13 @@
         $blurb .=
         "<form id=\"review\">
         <div class=\"btn-group blurb-icon\">
-          <button name=\"helpful\" title=\"This Feedback Was Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"1-".$this->id."\">
+          <button name=\"helpful\" title=\"This Feedback Was Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"1-".$this->id."\">
             <i class=\"glyphicon glyphicon-thumbs-up blurb-icon\">  </i>
           </button>
-          <button name=\"helpful\" title=\"This Feedback Was Not Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"0-".$this->id."\">
+          <button name=\"helpful\" title=\"This Feedback Was Not Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"0-".$this->id."\">
             <i class=\"glyphicon glyphicon-thumbs-down blurb-icon\"></i>
           </button>
-          <button name=\"helpful\" title=\"Report This Feedback\" class=\"blurb-icon btn btn-default\" type=\"submit\" value=\"2-".$this->id."\">
+          <button name=\"helpful\" title=\"Report This Feedback\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"2-".$this->id."\">
             <i class=\"glyphicon glyphicon-warning-sign blurb-icon\"></i>
           </button>
         </div>
