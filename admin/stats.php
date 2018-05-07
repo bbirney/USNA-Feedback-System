@@ -28,13 +28,19 @@
 
   require_once(LIBRARY_PATH.'lib_feedback.php');
 
+  $positive = 0;
+  $negative = 0;
+  $neutral = 0;
+  $good = 0;
+  $bad = 0;
+  $reported_num = 0;
+
   $api_data = retrieve_apikey($db, USER['user']);
   if (count($api_data) < 1) {
     generate_apikey($db, USER['user']);
     $api_data = retrieve_apikey($db, USER['user']);
   }
 
-  $stmt->close();
   $stmt = build_query($db, "SELECT * FROM feedback", array());
 
   $stmt->store_result();
@@ -43,6 +49,9 @@
   $feedback = array();
   for ($i=0; $stmt->fetch(); $i++) {
     $feedback[$i] = new Feedback($user, $do_well, $improve, $giver, $status, $time, $know, $id);
+    if ($status == 1) $positive++;
+    else if ($status == 0) $negative++;
+    else $neutral++;
   }
 
   $stmt->close();
@@ -54,18 +63,34 @@
     $stmt->bind_result($id, $approval);
     $stmt->fetch();
 
+    if ($approval == 1) $good++;
+    else if ($approval == 0) $bad++;
+    else if ($approval == 2) {
+      $reported[$reported_num] = $feedback[$i];
+      $reported_num++;
+    }
+
     $feedback[$i]->setApp($approval);
     $stmt->close();
   }
 ?>
-<h1 class="text-center">View Feedback</h1>
+  <h1 class="text-center">Statistics</h1>
   <div class="row clean">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <h3 class="text-center">Total Feedback (<?php echo sizeof($feedback); ?>)</h3>
-      <div class="scrollable">
-        <?php for ($i=sizeof($feedback)-1;$i>=0;$i--) echo $feedback[$i]->create_blurb(USER['user']); ?>
+      Total Feedback: <?php echo sizeof($feedback); ?><br>
+      Total Positive: <?php echo $positive; ?><br>
+      Total Negative: <?php echo $negative; ?><br>
+      Total Neutral: <?php echo $neutral; ?><br><br>
+
+      Total Good: <?php echo $good; ?><br>
+      Total Bad: <?php echo $bad; ?><br><br>
+
+      <h3 class="text-center">Reported (<?php echo $reported_num; ?>)</h3>
+      <div class="reported col-md-8 col-md-offset-2">
+        <?php for ($i=sizeof($reported)-1;$i>=0;$i--) echo $reported[$i]->reported(); ?>
       </div>
+
     </div>
     <div class="col-md-1"></div>
   </div>
