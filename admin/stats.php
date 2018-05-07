@@ -74,10 +74,10 @@
     $stmt->close();
   }
 ?>
-  <h1 class="text-center">Statistics</h1>
   <div class="row clean">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <h1 class="text-center">Statistics</h1>
       Total Feedback: <?php echo sizeof($feedback); ?><br>
       Total Positive: <?php echo $positive; ?><br>
       Total Negative: <?php echo $negative; ?><br>
