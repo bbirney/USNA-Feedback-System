@@ -53,19 +53,19 @@
       if ($this->approval == 42 && ($this->giver != $user)) {
         //NOTE: Configure 3 buttons (one for good, another for bad, a third for report) THIS WILL BE A FORM
         $blurb .=
-        "<form id=\"review\">
+        "
         <div class=\"btn-group blurb-icon\">
-          <button name=\"helpful\" title=\"This Feedback Was Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"1-".$this->id."\">
+          <button name=\"helpful\" title=\"This Feedback Was Helpful\" class=\"blurb-icon btn btn-default\" onclick=\"submit_form('1-".$this->id."')\">
             <i class=\"glyphicon glyphicon-thumbs-up blurb-icon\">  </i>
           </button>
-          <button name=\"helpful\" title=\"This Feedback Was Not Helpful\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"0-".$this->id."\">
+          <button name=\"helpful\" title=\"This Feedback Was Not Helpful\" class=\"blurb-icon btn btn-default\" onclick=\"submit_form('0-".$this->id."')\" value=\"0-".$this->id."\">
             <i class=\"glyphicon glyphicon-thumbs-down blurb-icon\"></i>
           </button>
-          <button name=\"helpful\" title=\"Report This Feedback\" class=\"blurb-icon btn btn-default\" type=\"submit\" onclick=\"hidden=this\" value=\"2-".$this->id."\">
+          <button name=\"helpful\" title=\"Report This Feedback\" class=\"blurb-icon btn btn-default\" onclick=\"submit_form('2-".$this->id."')\" value=\"2-".$this->id."\">
             <i class=\"glyphicon glyphicon-warning-sign blurb-icon\"></i>
           </button>
         </div>
-        </form>";
+        ";
       } else if ($this->approval == 0) {
         //NOTE: Configure 1 glyphicon with a thumbs down
         $blurb .= "<i title=\"This was Bad Feedback\" class=\"glyphicon glyphicon-thumbs-down blurb-icon bad\"></i>";
