@@ -59,7 +59,7 @@
   $stmt->close();
 
   for ($i=0;$i<sizeof($given);$i++) {
-    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
+    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($given[$i]->id));
 
     $stmt->store_result();
     $stmt->bind_result($id, $approval);
@@ -70,17 +70,24 @@
   }
 
   for ($i=0;$i<sizeof($received);$i++) {
-    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($id));
+    $stmt = build_query($db, "SELECT * FROM feedback_id WHERE id = ?", array($received[$i]->id));
 
     $stmt->store_result();
     $stmt->bind_result($id, $approval);
     $stmt->fetch();
-
+    
     $received[$i]->setApp($approval);
     $stmt->close();
   }
 
 ?>
+<script type="text/javascript">
+  function submit_form(value) {
+    console.log(value);
+    $("#output").load('../api/<?php echo $api_data['apikey']; ?>/approval', {'helpful': value});
+  }
+</script>
+
 <h1 class="text-center">View Feedback</h1>
   <div class="row clean">
     <div class="col-md-1"></div>
@@ -99,17 +106,6 @@
     <div class="col-md-1"></div>
   </div>
   <br>
-  <div class="col-md-4"></div>
-  <div class="col-md-4" id="output"></div>
+  <div id="output"></div>
 </body>
 </html>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var hidden;
-    $("#review").submit(function(e) {
-      console.log(hidden);
-      // $("#output").load('../api/<?php echo $api_data['apikey']; ?>/approval', $(this).serialize());
-      e.preventDefault();
-    });
-  });
-</script>
