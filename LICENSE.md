@@ -13,7 +13,7 @@ The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 Credit shall be given for all further implementation or use of the software in 
-the form of "This is a Ben Birney production" being written on every page. 
+the form of "A Ben Birney production" being written on every page. 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
