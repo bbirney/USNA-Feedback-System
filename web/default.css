@@ -119,3 +119,8 @@ hr {
 ul {
     list-style-type: disc;
 }
+
+.reported {
+  height:50vh;
+  overflow-y: scroll;
+}
