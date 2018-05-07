@@ -89,7 +89,10 @@
     }
 
     function reported() {
-      $blurb =  "<div class=\"jumbotron\">";
+      $blurb =  "<div class=\"jumbotron ";
+      if ($this->status == 1)      $blurb .= "bg-success\">";
+      else if ($this->status == 0) $blurb .= "bg-danger\">";
+      else $blurb .= "\">";
 
       $blurb .= "<b>".($this->user).": </b><br>";
       $blurb .= "<b>This person knows you as well as (1-5 scale): </b>".($this->know)."<br><br>";
