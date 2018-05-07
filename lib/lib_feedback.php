@@ -87,5 +87,22 @@
     function setApp($approval) {
       $this->approval = $approval;
     }
+
+    function reported() {
+      $blurb =  "<div class=\"jumbotron\">";
+
+      $blurb .= "<b>".($this->user).": </b><br>";
+      $blurb .= "<b>This person knows you as well as (1-5 scale): </b>".($this->know)."<br><br>";
+      $blurb .= "<b>What you do well:</b><br>";
+      $blurb .= ($this->do_well)."<br>";
+      $blurb .= "<b>What you can improve:</b><br>";
+      $blurb .= ($this->improve)."<br><br>";
+      $blurb .= "<b>- ".($this->giver)."</b>";
+      $blurb .= "<br>";
+      $blurb .= ($this->timestamp)."<br>";
+      $blurb .= "</div>";
+
+      return $blurb;
+    }
   }
 ?>
