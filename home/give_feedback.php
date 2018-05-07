@@ -33,7 +33,7 @@
 
     $stmt = build_query($db, "INSERT INTO feedback (user, do_well, improve, giver, status, know) VALUES (?, ?, ?, ?, ?, ?)", $query_fields);
 
-    $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-success text-center\" role=\"alert\">
+    $response = "<div class=\"col-md-4 col-md-offset-4 alert alert-info text-center\" role=\"alert\">
                   <strong>Feedback submitted to ".$_REQUEST['alpha']."!</strong>
                  </div>";
 
