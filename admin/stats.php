@@ -34,6 +34,7 @@
   $good = 0;
   $bad = 0;
   $reported_num = 0;
+  $avg_words = 0;
 
   $api_data = retrieve_apikey($db, USER['user']);
   if (count($api_data) < 1) {
@@ -52,8 +53,11 @@
     if ($status == 1) $positive++;
     else if ($status == 0) $negative++;
     else $neutral++;
+
+    $avg_words += str_word_count($improve.$do_well);
   }
 
+  $avg_words /= sizeof($feedback);
   $stmt->close();
 
   for ($i=0;$i<sizeof($feedback);$i++) {
@@ -81,7 +85,8 @@
       Total Feedback: <?php echo sizeof($feedback); ?><br>
       Total Positive: <?php echo $positive; ?><br>
       Total Negative: <?php echo $negative; ?><br>
-      Total Neutral: <?php echo $neutral; ?><br><br>
+      Total Neutral: <?php echo $neutral; ?><br>
+      Avg Words per Feedback: <?php printf("%.2f", $avg_words); ?><br><br>
 
       Total Good: <?php echo $good; ?><br>
       Total Bad: <?php echo $bad; ?><br><br>
