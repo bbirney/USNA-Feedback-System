@@ -58,10 +58,10 @@
     $stmt->close();
   }
 ?>
-  <h1 class="text-center">View All Feedback</h1>
   <div class="row clean">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <h1 class="text-center">View All (<?php echo sizeof($feedback); ?>)</h1>
       <div class="scrollable">
         <?php for ($i=sizeof($feedback)-1;$i>=0;$i--) echo $feedback[$i]->reported(); ?>
       </div>
