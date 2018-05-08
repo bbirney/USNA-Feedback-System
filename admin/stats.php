@@ -54,7 +54,7 @@
     else if ($status == 0) $negative++;
     else $neutral++;
 
-    $avg_words += str_word_count($improve.$do_well);
+    $avg_words += str_word_count($improve." ".$do_well);
   }
 
   $avg_words /= sizeof($feedback);
